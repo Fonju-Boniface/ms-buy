@@ -10,30 +10,38 @@ import {
   PopoverHeader,
   PopoverTrigger,
   Text,
-} from '@chakra-ui/react';
-import { AppContext } from '@src/context/AppContext';
-import { useContext } from 'react';
-import { BsHeart } from 'react-icons/bs';
-import { WishlistItem } from './WishlistItem';
+} from "@chakra-ui/react";
+import { AppContext } from "@src/context/AppContext";
+import { useContext } from "react";
+import { BsHeart } from "react-icons/bs";
+import { WishlistItem } from "./WishlistItem";
+import { useTheme } from "@/ThemeContext";
 
 export const Wishlist = () => {
   const {
     state: { wishlist },
     resetItems,
   } = useContext(AppContext);
-
+  const { darkMode } = useTheme();
   return (
     <Popover>
       <PopoverTrigger>
         <Button
           color="brand.primary"
           variant="ghost"
-          _hover={{
-            bgColor: 'transparent',
-          }}
+          _hover={
+            darkMode
+              ? {
+                  color: "black",
+                }
+              : {
+                  color: "white",
+                }
+          }
           pos="relative"
         >
-          <BsHeart size="0.9rem" /> <Text mx="1">Wishlist</Text>
+          <BsHeart size="0.9rem" /> 
+          {/* <Text mx="1">Wishlist</Text> */}
           {wishlist.length !== 0 && (
             <Flex
               pos="absolute"
@@ -70,7 +78,7 @@ export const Wishlist = () => {
             <Button
               variant="outline"
               mr={3}
-              onClick={() => resetItems('wishlist')}
+              onClick={() => resetItems("wishlist")}
             >
               Clear Wishlist
             </Button>

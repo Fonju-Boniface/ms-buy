@@ -6,6 +6,7 @@ import { IBreadcrumbItem, IProduct } from '@src/model';
 import React, { useState } from 'react';
 import { usePagination } from '@mantine/hooks';
 import { Hero } from '@src/components/Hero/Hero';
+import { useTheme } from "@/ThemeContext";
 
 interface AllProductsProps {
   products: IProduct[];
@@ -32,6 +33,8 @@ export const AllProducts = ({
       setVisibleProducts(products.slice(start, end));
     },
   });
+// import { useTheme } from "@/ThemeContext";
+  const { darkMode, toggleDarkMode } = useTheme();
 
   return (
     <>
@@ -40,7 +43,7 @@ export const AllProducts = ({
         flexWrap="wrap"
         w={{ base: '100%', lg: '90%' }}
         mx="auto"
-        justify={{ base: 'center', lg: 'space-between' }}
+        
       >
         {visibleProducts.map((product) => (
           <ProductCard key={product.id} product={product} />

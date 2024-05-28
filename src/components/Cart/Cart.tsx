@@ -11,13 +11,14 @@ import {
   Flex,
   Text,
   useDisclosure,
-} from '@chakra-ui/react';
-import { AppContext } from '@src/context/AppContext';
-import { calculateItemsTotal } from '@src/helpers';
-import Link from 'next/link';
-import { useContext, useRef } from 'react';
-import { BsCart4 } from 'react-icons/bs';
-import { CartItem } from './CartItem';
+} from "@chakra-ui/react";
+import { AppContext } from "@src/context/AppContext";
+import { calculateItemsTotal } from "@src/helpers";
+import Link from "next/link";
+import { useContext, useRef } from "react";
+import { BsCart4 } from "react-icons/bs";
+import { CartItem } from "./CartItem";
+import { useTheme } from "@/ThemeContext";
 
 export const Cart = () => {
   const {
@@ -30,14 +31,14 @@ export const Cart = () => {
   const btnRef = useRef<any>();
 
   const handleCheckout = () => {
-    resetItems('checkout');
+    resetItems("checkout");
     cart.forEach((cartItem) => {
-      addItem('checkout', cartItem, cartItem.count);
+      addItem("checkout", cartItem, cartItem.count);
     });
 
     onClose();
   };
-
+  const { darkMode } = useTheme();
   return (
     <>
       <Button
@@ -45,12 +46,19 @@ export const Cart = () => {
         onClick={onOpen}
         variant="ghost"
         color="brand.primary"
-        _hover={{
-          bgColor: 'transparent',
-        }}
+        _hover={
+          darkMode
+            ? {
+                color: "black",
+              }
+            : {
+                color: "white",
+              }
+        }
         pos="relative"
       >
-        <BsCart4 /> <Text mx="1">Cart</Text>
+        <BsCart4 />
+        {/* <Text mx="1">Cart</Text> */}
         {cart.length !== 0 && (
           <Flex
             pos="absolute"
@@ -76,10 +84,14 @@ export const Cart = () => {
         size="lg"
       >
         <DrawerOverlay />
-        <DrawerContent>
+
+        <DrawerContent  paddingBottom="3rem" paddingTop={{ base: "120px", xl: "80px" }}>
           <DrawerCloseButton />
-          <DrawerHeader color="brand.primary">
-            Cart ( {cart.length} Items )
+          <DrawerHeader  display="flex" justifyContent="space-between" alignItems='center' color="brand.primary">
+            <Button  variant="outline" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Box> {cart.length} Items</Box>
           </DrawerHeader>
           <DrawerBody>
             {cart.length === 0 ? (
@@ -94,7 +106,7 @@ export const Cart = () => {
                 <Button
                   variant="outline"
                   mr={3}
-                  onClick={() => resetItems('cart')}
+                  onClick={() => resetItems("cart")}
                 >
                   Clear Cart
                 </Button>
@@ -103,10 +115,10 @@ export const Cart = () => {
                     bgColor="brand.primary"
                     color="white"
                     _hover={{
-                      bgColor: 'brand.primaryLight',
+                      bgColor: "brand.primaryLight",
                     }}
                     _active={{
-                      bgColor: 'brand.primaryLight',
+                      bgColor: "brand.primaryLight",
                     }}
                     onClick={handleCheckout}
                   >

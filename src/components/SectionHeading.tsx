@@ -1,12 +1,20 @@
-import { Heading } from '@chakra-ui/react';
-import React from 'react';
+// SectionHeading.tsx
+import { Heading, HeadingProps } from '@chakra-ui/react';
 
-interface SectionHeadingProps {
+interface SectionHeadingProps extends HeadingProps {
   title: string;
+  style?: React.CSSProperties;
 }
-export const SectionHeading = ({ title }: SectionHeadingProps) => {
+
+export const SectionHeading = ({ title, style, ...props }: SectionHeadingProps) => {
   return (
-    <Heading size="md" my="1.5rem">
+    <Heading
+      mb="3rem"
+      
+      color="brand.primary"
+      // style={style}
+      // {...props}
+    >
       {title}
     </Heading>
   );

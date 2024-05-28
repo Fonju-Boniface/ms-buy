@@ -20,6 +20,7 @@ export interface IProduct {
   mainImage: string;
   category: ICategory;
   gallery: string[];
+
 }
 
 export interface ICategory {
@@ -60,3 +61,4 @@ export interface IContext {
   isAdded: (key: ItemKey, productId: string) => boolean;
   resetItems: (key: ItemKey) => void;
 }
+// title

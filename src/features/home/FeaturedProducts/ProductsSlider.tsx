@@ -34,6 +34,7 @@ export const ProductsSlider = ({ products }: ProductsSlider) => {
         {products.map((product) => (
           <SwiperSlide key={product.id} style={slideStyles}>
             <ProductCard product={product} />
+           
           </SwiperSlide>
         ))}
 

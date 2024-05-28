@@ -1,14 +1,16 @@
 import { Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import React from 'react';
+import { useTheme } from "@/ThemeContext";
 
 export const AppLogo = () => {
+   const { darkMode } = useTheme();
   return (
     <Link href="/">
-      <Text color="gray.800" fontWeight="bold">
-        MS{' '}
+      <Text fontWeight="bold" color={darkMode ? "black" : "white"} >
+       All{' '}-
         <Text as="span" color="brand.primary">
-          BUY
+          SHOP
         </Text>
       </Text>
     </Link>

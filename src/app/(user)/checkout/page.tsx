@@ -1,12 +1,17 @@
+"use client"
+import { Box } from '@chakra-ui/react';
 import { Checkout } from '@src/features/checkout';
 import { NextPage } from 'next';
 import React from 'react';
+import { useTheme } from "@/ThemeContext";
 
 const CheckoutPage: NextPage = () => {
+  const { darkMode } = useTheme();
+
   return (
-    <div>
+    <Box bg={darkMode ? "white" : "black"} padding="1rem">
       <Checkout />
-    </div>
+    </Box>
   );
 };
 

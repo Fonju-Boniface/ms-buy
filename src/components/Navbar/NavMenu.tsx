@@ -17,11 +17,12 @@ import Link from 'next/link';
 import React, { useRef } from 'react';
 import { VscListFlat } from 'react-icons/vsc';
 import { AppLogo } from '../AppLogo';
+import { useTheme } from '@/ThemeContext';
 
 export const NavMenu = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef: any = useRef();
-
+  const { darkMode } = useTheme();
   return (
     <>
       <Button ref={btnRef} onClick={onOpen}>
@@ -32,18 +33,20 @@ export const NavMenu = () => {
         placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
+        // zIndex={10000}
       >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent  paddingTop={{ base: "120px", xl: "80px" }}>
           <DrawerCloseButton />
           <DrawerHeader>
             <AppLogo />
           </DrawerHeader>
           <Divider />
 
+        {/* {{ base: "120px", xl: "80px" }} */}
           <DrawerBody>
             {navItems.map((navItem) => (
-              <Link href={navItem.href} key={navItem.label}>
+              <Link href={navItem.href} key={navItem.label} onClick={onClose}>
                 <Box
                   p="0.5rem"
                   _hover={{ bgColor: 'brand.primaryLight', color: 'white' }}

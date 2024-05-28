@@ -1,0 +1,15 @@
+/* .redVavLink:hover{
+   color: #ea4886 !important;
+} */
+@media screen and (max-width: 768px){
+   .MobilsSubNavBot{
+      width: 100% !important;
+      position: fixed !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      margin: 0 !important;
+   }
+}

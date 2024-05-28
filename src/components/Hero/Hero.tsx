@@ -1,7 +1,8 @@
-'use client';
-import { Box, Button, Card, Heading, Image, Text } from '@chakra-ui/react';
-import Link from 'next/link';
-import React from 'react';
+"use client";
+import { Box, Button, Card, Heading, Image, Text } from "@chakra-ui/react";
+import Link from "next/link";
+import React from "react";
+import { useTheme } from "@/ThemeContext";
 
 interface IHeroProps {
   heading: string;
@@ -18,33 +19,32 @@ export const Hero = ({
   btnLabel,
   btnLink,
 }: IHeroProps) => {
+  const { darkMode } = useTheme();
   return (
     <Card
-      direction={{ base: 'column', md: 'row' }}
+      direction={{ base: "column", md: "row" }}
       align="center"
       justify="space-between"
-      overflow="hidden"
-      variant="outline"
-      w={{ base: '100%', lg: '90%' }}
-      mx="auto"
-      shadow="sm"
-      p="2rem"
-      mb="2rem"
+      w="100%"
+      padding="0 1rem 3rem 1rem"
+      paddingTop={{ base: "120px", xl: "80px" }}
+      bg={darkMode ? "white" : "black"}
+      mb="3rem"
     >
-      <Box mx="2rem" w={{ base: '100%', md: '50%' }}>
-        <Heading size="2xl">{heading}</Heading>
-        <Text py="1rem">{description}</Text>
+      <Box mx="2rem" w={{ base: "100%", md: "50%" }}>
+        <Heading color={darkMode ? "black" : "white"} size="2xl">{heading}</Heading>
+        <Text  color={darkMode ? "black" : "white"} py="1rem">{description}</Text>
 
         <Link href={btnLink}>
-          <Button variant="outline">{btnLabel}</Button>
+          <Button color="brand.primary" variant="outline">{btnLabel}</Button>
         </Link>
       </Box>
-      <Box mx="2rem" w={{ base: '100%', md: '50%' }} mt="1rem">
+      <Box mx="2rem" w={{ base: "100%", md: "50%" }} mt="1rem">
         <Image
           src={imageUrl}
           alt={heading}
           objectFit="cover"
-          maxW={{ base: '100%' }}
+          maxW={{ base: "100%" }}
           rounded="md"
         />
       </Box>

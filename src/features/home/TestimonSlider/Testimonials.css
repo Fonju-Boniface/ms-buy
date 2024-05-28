@@ -1,0 +1,57 @@
+@media screen and (max-width: 896px) {
+    .Testimonials{
+        width: 100%;
+        padding: 0.5rem !important;
+    }
+    .testimonialsIndex{
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    .TestForm{
+        padding: .5rem !important;
+    }
+    .TestForm form{
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 470px) {
+    .ButtonTest{
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    .ButtonTest button{
+        width: 100% !important;
+    }
+    .ButtonTest button.closee{
+        width: fit-content !important;
+    }
+}
+@media screen and (max-width: 300px) {
+    
+    .ChecoutItems{
+        flex-direction: column !important;
+        justify-content: center  !important;
+        align-items: center !important;
+        gap: 1rem !important;
+    }
+    .ChecoutItem{
+        flex-direction: column !important;
+        justify-content: center  !important;
+        align-items: center !important;
+        gap: .5rem !important;
+    }
+    .ChecoutItem .center{
+        flex-direction: column !important;
+        justify-content: center  !important;
+        align-items: center !important;
+        gap: .5em !important;
+    }
+    .ChecoutItem .center .cont{
+        flex-direction: column !important;
+        text-align: center !important;
+        display: flex;
+        justify-content: center  !important;
+        align-items: center !important;
+        gap: .5em !important;
+    }
+}

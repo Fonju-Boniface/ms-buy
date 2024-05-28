@@ -20,7 +20,8 @@ import {
 import { AppContext } from '@src/context/AppContext';
 import { calculateItemsTotal, formatPrice, getSubstring } from '@src/helpers';
 import React, { useContext, useEffect, useState } from 'react';
-
+import "../home/TestimonSlider/Testimonials.css"
+import { useTheme } from "@/ThemeContext";
 export const Checkout = () => {
   const [subTotal, setSubTotal] = useState<number>(0);
   const [tax, setTax] = useState<number>(0);
@@ -35,13 +36,16 @@ export const Checkout = () => {
     setSubTotal(subTotal);
     setTax(tax);
   }, [checkout]);
+  const { darkMode } = useTheme();
   return (
     <Flex
       w={{ base: '100%', lg: '90%' }}
       mx="auto"
       flexDir={{ base: 'column', lg: 'row' }}
       gap="2rem"
-    >
+      paddingTop={{ base: "130px", xl: "90px" }}
+      bg={darkMode ? "white" : "black"}
+      >
       <Stack spacing={10} w={{ base: '100%', lg: '60%' }}>
         <Card borderWidth="1px" borderColor="gray.200" shadow="none">
           <CardHeader>
@@ -49,16 +53,16 @@ export const Checkout = () => {
           </CardHeader>
 
           <CardBody>
-            <Stack spacing="2rem">
+            <Stack spacing="2rem"  className='ChecoutItems'   >
               {checkout.map((item) => (
-                <Flex key={item.id} align="center" justify="space-between">
-                  <Flex align="center">
+                <Flex className='ChecoutItem' key={item.id} align="center" justify="space-between">
+                  <Flex align="center" className="center">
                     <Image
                       src={item.mainImage}
                       boxSize="100px"
                       bgSize="contain"
                     />
-                    <Box mx="1rem">
+                    <Box className='cont' mx="1rem">
                       <Text
                         fontWeight="bold"
                         fontSize={{ base: 'sm', lg: 'lg' }}

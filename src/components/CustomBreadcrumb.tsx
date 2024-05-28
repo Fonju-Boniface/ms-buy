@@ -13,6 +13,8 @@ interface ICustomBreadcrumbProps {
 }
 
 export const CustomBreadcrumb = ({ items = [] }: ICustomBreadcrumbProps) => {
+  // const { darkMode, toggleDarkMode } = useTheme();
+  // import { useTheme } from "@/ThemeContext";
   return (
     <>
       {items.length > 0 && (

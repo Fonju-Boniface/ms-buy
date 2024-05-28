@@ -14,6 +14,7 @@ import { ReactNode } from 'react';
 import { BiMailSend } from 'react-icons/bi';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { AppLogo } from '../AppLogo';
+import { useTheme } from '@/ThemeContext';
 
 const SocialButton = ({
   children,
@@ -56,8 +57,9 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 };
 
 export const Footer = () => {
+  const { darkMode } = useTheme();
   return (
-    <Box bg="pink.50" color="gray.700" mt="2rem">
+    <Box bg="pink.50" color="gray.700" pb="3rem" bgColor={darkMode ? "white":"black"}>
       <Container as={Stack} maxW={'6xl'} py={10}>
         <SimpleGrid
           templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 2fr' }}
@@ -67,40 +69,43 @@ export const Footer = () => {
             <Box>
               <AppLogo />
             </Box>
-            <Text fontSize="sm">© 2023 MS Buy. All rights reserved</Text>
+            <Text fontSize="sm" color={darkMode ? "black":"white"}>© 2023 MS Buy. All rights reserved</Text>
             <Stack direction="row" spacing={6}>
               <SocialButton label="Twitter" href={'#'}>
-                <FaTwitter />
+                <FaTwitter color={darkMode ? "black":"white"} />
               </SocialButton>
               <SocialButton label="Facebook" href={'#'}>
-                <FaFacebook />
+                <FaFacebook color={darkMode ? "black":"white"}/>
               </SocialButton>
               <SocialButton label="Instagram" href={'#'}>
-                <FaInstagram />
+                <FaInstagram  color={darkMode ? "black":"white"}/>
               </SocialButton>
             </Stack>
           </Stack>
-          <Stack align="flex-start">
+          <Stack align="flex-start" color={darkMode ? "black":"white"}>
             <ListHeader>Company</ListHeader>
-            <Link href={'#'}>About us</Link>
-            <Link href={'#'}>Contact us</Link>
-            <Link href={'#'}>Testimonials</Link>
+            <Link color={darkMode ? "black":"white"} href='./'>Home</Link>
+            <Link color={darkMode ? "black":"white"} href={'#testimonials'}>Testimonials</Link>
           </Stack>
-          <Stack align="flex-start">
+          <Stack align="flex-start" color={darkMode ? "black":"white"}>
             <ListHeader>Support</ListHeader>
-            <Link href={'#'}>Help Center</Link>
-            <Link href={'#'}>Terms of Service</Link>
-            <Link href={'#'}>Privacy Policy</Link>
+            <Link color={darkMode ? "black":"white"} href={'./products'}>All Products</Link>
+            <Link color={darkMode ? "black":"white"} href={'./categories'}>Categories</Link>
+            {/* <Link color={darkMode ? "black":"white"} href={'./#most_Selling_products'}>most Selling</Link>
+            <Link color={darkMode ? "black":"white"} href={'#'}>Privacy Policy</Link> */}
           </Stack>
-          <Stack align="flex-start">
+          <Stack align="flex-start" color={darkMode ? "black":"white"}>
             <ListHeader>Get the best deals</ListHeader>
             <Stack direction={'row'}>
               <Input
                 placeholder="Your email address"
                 bg="blackAlpha.100"
-                border={0}
+                outline=".1rem"
+                outlineColor="gray"
+                color={darkMode ? "black":"white"}
                 _focus={{
-                  bg: 'whiteAlpha.300',
+                  
+                  border: ".1rem solid hsl(337,79%,60%)"
                 }}
               />
               <IconButton
@@ -113,8 +118,10 @@ export const Footer = () => {
                 icon={<BiMailSend />}
               />
             </Stack>
+            <Link href='https://fongang-fonju-fullstack-portfolio.netlify.app/' target="_blank" >Click me to <Text color="brand.primary">More About creator at My Portfolio</Text></Link>
           </Stack>
         </SimpleGrid>
+        <Text color={darkMode ? "black":"white"} w="100%" textAlign="center">All By locked-code 2023 Loves to code all things <b>Life isn't a Straight Line</b></Text>
       </Container>
     </Box>
   );

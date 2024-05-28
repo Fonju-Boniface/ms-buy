@@ -1,0 +1,38 @@
+/* .HeroDisplay{
+    min-height: 100vh !important;
+    
+} */
+.HeroDisplay .boxH{
+    /* background: #35ef02 !important; */
+    min-height: 100% !important;
+    box-shadow: 0 0 10px #;
+    
+}
+/* .HeroDisplay .boxH:last-child{
+    width: 300px !important;
+    height: 300px !important;
+    
+} */
+.fin{
+    background: #000000ba;
+}
+
+@media screen and (
+    max-width: 700px
+    ) {
+        .HeroDisplay{
+            align-items: center !important;
+            /* width: 100% !important; */
+        }
+        .HeroDisplay .boxH{
+            align-items: center !important;
+            justify-content: center !important;
+            padding-left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            text-align: center !important;
+            padding: 1rem !important;
+            min-height: 85vh !important;
+        }
+        
+}

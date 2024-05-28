@@ -7,10 +7,10 @@ import { msTheme } from './src/theme';
 
 export const config: Config = {
   name: 'default',
-  title: 'MS Buy',
+  title: 'nextjs-shop',
   basePath: '/studio',
 
-  projectId: 'gbmlc5y8',
+  projectId: '62cwhy3o',
   dataset: 'production',
 
   plugins: [deskTool(), visionTool()],

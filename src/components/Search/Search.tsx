@@ -1,6 +1,7 @@
 import { SearchIcon } from '@chakra-ui/icons';
 import {
   Box,
+  DarkMode,
   Flex,
   Image,
   Input,
@@ -16,6 +17,7 @@ import { groq } from 'next-sanity';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { inputGroup } from './Style';
+import { useTheme } from '@/ThemeContext';
 
 const query: string = groq`
     *[_type == "product" && (name match $searchText || description match $searchText) ] {
@@ -65,10 +67,10 @@ export const Search = () => {
 
     return () => clearTimeout(timeout);
   }, [searchText]);
-
+  const { darkMode } = useTheme();
   return (
     <Box pos="relative" w={{ base: '100%', lg: '32rem' }} ref={ref}>
-      <InputGroup {...inputGroup}>
+      <InputGroup color={darkMode ? "black":"white"} {...inputGroup}>
         <InputLeftElement
           pointerEvents="none"
           children={<SearchIcon color="gray.400" />}
@@ -76,9 +78,11 @@ export const Search = () => {
         <Input
           type="text"
           placeholder="Search..."
-          focusBorderColor="brand.primaryLight"
+          focusBorderColor="brand.primary"
           borderWidth="1px"
           borderColor="gray.400"
+          borderRadius={20}
+
           value={searchText}
           onClick={() => setIsModalOpen(true)}
           onChange={(e) => setSearchText(e.target.value)}
@@ -88,13 +92,16 @@ export const Search = () => {
       {isModalOpen && (
         <Box
           pos="absolute"
-          bg="white"
+          top={20}
+          bg={darkMode ? "white":"gray"}
+          color={darkMode ? "dark":"black"}
           shadow="md"
           padding="0.5rem"
           w="100%"
           boxSizing="border-box"
           maxH="500px"
           overflowY="auto"
+          borderRadius={10}
         >
           {products.length === 0 ? (
             isLoading ? (
@@ -124,9 +131,13 @@ const SearchedProductList = ({ products }: SearchedProductListProps) => {
             borderBottomWidth="1px"
             borderBottomColor="gray.200"
             p="2"
+          borderRadius={10}
+
             _hover={{ bgColor: 'gray.100' }}
           >
-            <Flex align="center">
+            <Flex align="center"
+          borderRadius={10}
+          >
               <Image
                 alt={product.name}
                 src={product.mainImage}
@@ -136,7 +147,8 @@ const SearchedProductList = ({ products }: SearchedProductListProps) => {
               <Text>{product.name}</Text>
             </Flex>
             <Flex justify="flex-end">
-              <Tag size="sm">{product.category.name}</Tag>
+              <Tag size="sm" bg="brand.primary" color="white"
+              >{product.category.name}</Tag>
             </Flex>
           </Box>
         </Link>
